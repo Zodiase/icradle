@@ -34,10 +34,10 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.1',
+			version : '0.2.2.2',
 			// console
 			console: {
-				container : $DIV()
+				$container : $DIV()
 					.addClass( _u( 'logCTNR', 'fixFullWindow' ) )
 				,
 				log_base : function( msg, className, css ) {
@@ -46,7 +46,7 @@ var s = document.getElementsByTagName('script')[0];
 						newLog.attr( 'class', className );
 					if ( css != undefined )
 						newLog.css( css );
-					newLog.appendTo( framework.console.container );
+					newLog.appendTo( framework.console.$container );
 				},
 				log : function( msg ) {
 					framework.console.log_base( msg, 'log' );
@@ -59,51 +59,55 @@ var s = document.getElementsByTagName('script')[0];
 			},
 			// off-document container
 			unreal : {
-				container : $DIV()
+				$container : $DIV()
 					.addClass( _u( 'ofdCTNR', 'fixFullWindow' ) )
 			},
 			// hidden container
 			hidden : {
-				container : $DIV()
+				$container : $DIV()
 					.addClass( _u( 'hidCTNR' ) )
 			},
-			/* background container */
+			// background container
 			background : {
-				container : $DIV()
+				$container : $DIV()
 					.addClass( _u( 'bkgCTNR', 'fixFullWindow' ) )
 					.hide()
 			},
-			/* body container */
+			// body container
 			body : {
-				container : $DIV()
+				$container : $DIV()
 					.addClass( _u( 'bdyCTNR', 'fixFullWindow' ) )
 					.hide()
 			},
-			/* cover container */
+			// cover container
 			cover : {
-				container : $DIV()
+				$container : $DIV()
 					.addClass( _u( 'cvrCTNR', 'fixFullWindow' ) )
 					.hide()
 				,
 				logo : {
-					container : $DIV()
+					$container : $DIV()
 						.addClass( _u( 'cvr_logo' ) )
 						.hide()
 					,
-					img : $IMG()
+					$img : $IMG()
 						.addClass( _u( 'cvr_logo_img' ) )
 						.hide()
-				},
+					,
+					$label : $LABEL()
+						.addClass( _u( 'cvr_logo_label' ) )
+						.hide()
+				}, // logo
 				statusBar : {
-					container : $DIV()
+					$container : $DIV()
 						.addClass( _u( 'cvr_statusbar' ) )
 						.hide()
 					,
-					text : $LABEL()
+					$text : $LABEL()
 						.addClass( _u( 'cvr_statusbar_label' ) )
 						.hide()
 					,
-					dots : [
+					$dots : [
 						$LABEL()
 							.addClass( _u( 'cvr_statusbar_label' ) )
 							.hide()
@@ -119,9 +123,9 @@ var s = document.getElementsByTagName('script')[0];
 							.hide()
 							.text('.')
 					]
-				}
-			}
-		};
+				} // statusBar
+			} // cover
+		}; // framework
 
 		// application
 		var app = {
@@ -148,25 +152,26 @@ var s = document.getElementsByTagName('script')[0];
 			function framework_setup( queue, heap ) {
 				/* build structure */
 				$( document.body ).append(
-					framework.console.container,
-					framework.hidden.container,
-					framework.background.container,
-					framework.body.container,
-					framework.cover.container.append(
-						framework.cover.logo.container.append(
-							framework.cover.logo.img
+					framework.console.$container,
+					framework.hidden.$container,
+					framework.background.$container,
+					framework.body.$container,
+					framework.cover.$container.append(
+						framework.cover.logo.$container.append(
+							framework.cover.logo.$img,
+							framework.cover.logo.$label
 						),
-						framework.cover.statusBar.container.append(
-							framework.cover.statusBar.text,
-							framework.cover.statusBar.dots[ 0 ],
-							framework.cover.statusBar.dots[ 1 ],
-							framework.cover.statusBar.dots[ 2 ]
+						framework.cover.statusBar.$container.append(
+							framework.cover.statusBar.$text,
+							framework.cover.statusBar.$dots[ 0 ],
+							framework.cover.statusBar.$dots[ 1 ],
+							framework.cover.statusBar.$dots[ 2 ]
 						)
 					)
 				);
 				/* create private apis */
-				framework.cover.statusBar.dots.jump = function() {
-					framework.cover.statusBar.dots[ 0 ]
+				framework.cover.statusBar.$dots.jump = function() {
+					framework.cover.statusBar.$dots[ 0 ]
 						.delay( 300 )
 						.animate( {
 							top: '-12px'
@@ -174,7 +179,7 @@ var s = document.getElementsByTagName('script')[0];
 						.animate( {
 							top: '0'
 						}, 150 );
-					framework.cover.statusBar.dots[ 1 ]
+					framework.cover.statusBar.$dots[ 1 ]
 						.delay( 400 )
 						.animate( {
 							top: '-12px'
@@ -182,7 +187,7 @@ var s = document.getElementsByTagName('script')[0];
 						.animate( {
 							top: '0'
 						}, 150 );
-					framework.cover.statusBar.dots[ 2 ]
+					framework.cover.statusBar.$dots[ 2 ]
 						.delay( 500 )
 						.animate( {
 							top: '-12px'
@@ -195,7 +200,7 @@ var s = document.getElementsByTagName('script')[0];
 				framework.loadingDotsJumpTimer = null;
 				framework.makeLoadingDotsJump = function() {
 					framework.loadingDotsJumpTimer =
-						window.setInterval( framework.cover.statusBar.dots.jump, 2000 );
+						window.setInterval( framework.cover.statusBar.$dots.jump, 2000 );
 				};
 				framework.makeLoadingDotsStop = function() {
 					window.clearInterval( framework.loadingDotsJumpTimer );
@@ -205,31 +210,44 @@ var s = document.getElementsByTagName('script')[0];
 			},
 			function framework_fadeInBackground( queue, heap ) {
 				if ( heap.skip_animation === true ) {
-					framework.background.container.show();
+					framework.background.$container.show();
 				} else {
 					queue.pause();
-					framework.background.container.fadeIn( 300, queue.resume );
+					framework.background.$container.fadeIn( 300, queue.resume );
 				}
 			},
 			function framework_showCover( queue, heap ) {
 				if ( heap.skip_animation === true ) {
-					framework.cover.container.show();
+					framework.cover.$container.show();
 				} else {
 					queue.pause();
-					framework.cover.container.fadeIn( 300, queue.resume );
+					framework.cover.$container.fadeIn( 300, queue.resume );
 				}
 			},
-			function framework_loadSiteLogo( queue, heap ) {
+			function framework_loadSiteImageLogo( queue, heap ) {
 				queue.pause();
-				framework.cover.logo.img
+				queue.pc.goto( queue.pc.locate( 'framework_showSiteImageLogo' ) );
+				framework.cover.logo.$img
 					.error( function () {
 						framework.console.warn( 'logo failed to load' );
+						queue.pc.goto( queue.pc.locate( 'framework_showSiteTextLogo' ) );
+						queue.resume();
 					} )
 					.load( queue.resume )
 					.attr( 'src', './img/' + _u( 'logo' ) + '.png' );
 			},
+			PQUEUE_BARRIER,
+			function framework_showSiteImageLogo( queue, heap ) {
+				queue.pc.goto( queue.pc.locate( 'framework_adjustSiteLogo' ) );
+				framework.cover.logo.$img.show();
+			},
+			PQUEUE_BARRIER,
+			function framework_showSiteTextLogo( queue, heap ) {
+				queue.pc.goto( queue.pc.locate( 'framework_adjustSiteLogo' ) );
+				framework.cover.logo.$label.show();
+			},
+			PQUEUE_BARRIER,
 			function framework_adjustSiteLogo( queue, heap ) {
-				framework.cover.logo.img.show();
 				var logo_css = {
 					height: '124px',
 					marginTop: '-62px'
@@ -238,18 +256,18 @@ var s = document.getElementsByTagName('script')[0];
 					framework.cover.css( logo_css );
 				} else {
 					queue.pause();
-					framework.cover.logo.container
+					framework.cover.logo.$container
 						.fadeIn( 300 )
 						.delay( 1000 )
 						.animate( logo_css, 300, queue.resume );
 				}
 			},
 			function framework_showStatusBar( queue, heap ) {
-				framework.cover.statusBar.text.text( 'starting' ).show();
-				framework.cover.statusBar.dots[ 0 ].show();
-				framework.cover.statusBar.dots[ 1 ].show();
-				framework.cover.statusBar.dots[ 2 ].show();
-				framework.cover.statusBar.container.fadeIn( 300 );
+				framework.cover.statusBar.$text.text( 'starting' ).show();
+				framework.cover.statusBar.$dots[ 0 ].show();
+				framework.cover.statusBar.$dots[ 1 ].show();
+				framework.cover.statusBar.$dots[ 2 ].show();
+				framework.cover.statusBar.$container.fadeIn( 300 );
 			},
 			function framework_makeLoadingDotsJump( queue, heap ) {
 				framework.makeLoadingDotsJump();
@@ -260,7 +278,7 @@ var s = document.getElementsByTagName('script')[0];
 				} else {
 					app.model = theModel( framework );
 					heap.model_setup_feedback = function( message ) {
-						framework.cover.statusBar.text.text( 'loading model: ' + message );
+						framework.cover.statusBar.$text.text( 'loading model: ' + message );
 					};
 					queue.pause();
 					app.model.setup( queue.resume, heap.model_setup_feedback );
@@ -272,7 +290,7 @@ var s = document.getElementsByTagName('script')[0];
 				} else {
 					app.view = theView( framework );
 					heap.view_setup_feedback = function( message ) {
-						framework.cover.statusBar.text.text( 'loading view: ' + message );
+						framework.cover.statusBar.$text.text( 'loading view: ' + message );
 					};
 					queue.pause();
 					app.view.setup( queue.resume, heap.view_setup_feedback );
@@ -284,7 +302,7 @@ var s = document.getElementsByTagName('script')[0];
 				} else {
 					app.control = theControl( framework );
 					heap.control_setup_feedback = function( message ) {
-						framework.cover.statusBar.text.text( 'loading control: ' + message );
+						framework.cover.statusBar.$text.text( 'loading control: ' + message );
 					};
 					queue.pause();
 					app.control.setup( queue.resume, heap.control_setup_feedback );
@@ -302,7 +320,7 @@ var s = document.getElementsByTagName('script')[0];
 					framework.console.warn( heap.connectMVC_error );
 				} else {
 					queue.pc.goto( queue.pc.locate( 'initializeApplication' ) );
-					framework.cover.statusBar.text.text( 'finalizing setup' );
+					framework.cover.statusBar.$text.text( 'finalizing setup' );
 					app.control.connectModel( app.model );
 					app.control.connectView( app.view );
 				}
@@ -313,28 +331,28 @@ var s = document.getElementsByTagName('script')[0];
 			},
 			PQUEUE_BARRIER,
 			function initializeApplication( queue, heap ) {
-				framework.cover.statusBar.text.text( 'initializing application' );
+				framework.cover.statusBar.$text.text( 'initializing application' );
 				app.control.triggerEvent( 'loaded' );
 			},
 			function framework_showBody( queue, heap ) {
-				framework.body.container.show();
+				framework.body.$container.show();
 			},
 			function framework_makeLoadingDotsStop( queue, heap ) {
 				framework.makeLoadingDotsStop();
 			},
 			function framework_hideStatusBar( queue, heap ) {
-				framework.cover.statusBar.text.text( '' ).hide();
-				framework.cover.statusBar.dots[ 0 ].hide();
-				framework.cover.statusBar.dots[ 1 ].hide();
-				framework.cover.statusBar.dots[ 2 ].hide();
-				framework.cover.statusBar.container.hide();
+				framework.cover.statusBar.$text.text( '' ).hide();
+				framework.cover.statusBar.$dots[ 0 ].hide();
+				framework.cover.statusBar.$dots[ 1 ].hide();
+				framework.cover.statusBar.$dots[ 2 ].hide();
+				framework.cover.statusBar.$container.hide();
 			},
 			function framework_hideCover( queue, heap ) {
 				if ( heap.skip_animation === true ) {
-					framework.cover.container.hide();
+					framework.cover.$container.hide();
 				} else {
 					queue.pause();
-					framework.cover.container.fadeOut( 300, queue.resume );
+					framework.cover.$container.fadeOut( 300, queue.resume );
 				}
 			},
 			function startApplication( queue, heap ) {
