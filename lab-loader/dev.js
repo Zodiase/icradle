@@ -34,7 +34,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.0',
+			version : '0.2.2.1',
 			// console
 			console: {
 				container : $DIV()
@@ -130,7 +130,7 @@ var s = document.getElementsByTagName('script')[0];
 			// MVC - view
 			view : null,
 			// MVC - control
-			control null
+			control: null
 		};
 
 		/**
