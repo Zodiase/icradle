@@ -1,16 +1,17 @@
-function theControl(body, console) {
-	var model = null,
-		view = null;
+function theControl( framework ) {
+
+	var __model = null,
+		__view = null;
 	var events = Array();
-	function listenEvent (eventName, responder) {
-		events[eventName] = responder;
+	function listenEvent( eventName, responder ) {
+		events[ eventName ] = responder;
 	}
-	function triggerEvent (eventName, args) {
-		var responder = events[eventName];
-		if (typeof responder === 'undefined') {
-			console.warn('No listener for event: ' + eventName);
+	function triggerEvent( eventName, args ) {
+		var responder = events[ eventName ];
+		if ( typeof responder === 'undefined' ) {
+			framework.console.warn( 'No listener for event: ' + eventName );
 		} else {
-			responder.apply(args);
+			responder.apply( args );
 		}
 	}
 	
@@ -18,28 +19,39 @@ function theControl(body, console) {
 		
 	}
 	function onDisplay() {
-		view.wrapper.show();
-		view.navigatorFrame.show();
-		view.control.show();
+		
 	}
 	
 	var api = {
-		setup : function (callback, feedback) {
-			feedback('setting event listeners');
-			listenEvent ('loaded', onLoad);
-			listenEvent ('displayed', onDisplay);
+		setup : function( callback, feedback ) {
+			// prepare fallback option for feedback function
+			if ( typeof feedback !== 'function' )
+				feedback = function( message ) {
+					framework.console.log( message );
+				};
+			// do not remove anything above
+
+			feedback( 'setting event listeners' );
+			listenEvent( 'loaded', onLoad );
+			listenEvent( 'displayed', onDisplay );
+
+			//-- put your initialization code here
 			
-			// do not remove this line
-			if (typeof callback === 'function') callback();
+			// do not remove anything below
+        	// remove setup function
+            delete api.setup;
+            // execute callback
+            if ( typeof callback === 'function' )
+            	callback();
 		},
-		connectModel : function (_model) {
-			model = _model;
+		connectModel : function( model ) {
+			__model = model;
 		},
-		connectView : function (_view) {
-			view = _view;
+		connectView : function( view ) {
+			__view = view;
 		},
-		triggerEvent : function (eventName, args) {
-			triggerEvent (eventName, args);
+		triggerEvent : function( eventName, args ) {
+			triggerEvent( eventName, args );
 		}
 	};
 	return api;
