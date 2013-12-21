@@ -1,3 +1,4 @@
+//-- code clip for google analytics
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-34856732-1']);
 _gaq.push(['_setDomainName', 'icradle.net']);
@@ -8,9 +9,15 @@ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async
 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+// code clip for google analytics --//
 
 (function (window, document, console, undefined) {
     $(function () {
+        //-- helper functions
+        // this function generates unique name strings by adding a prefix
+        var _u = UNIQIT_GEN('xhll_');
+        // helper functions --//
+
         /**
          * main function
          * this function does the following in order
