@@ -34,7 +34,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.2',
+			version : '0.2.2.3',
 			// console
 			console: {
 				$container : $DIV()
@@ -312,17 +312,13 @@ var s = document.getElementsByTagName('script')[0];
 				if ( typeof app.control === 'undefined' ) {
 					heap.connectMVC_error = 'Critical error: missing control.';
 					framework.console.warn( heap.connectMVC_error );
-				} else if ( typeof app.model === 'undefined' ) {
-					heap.connectMVC_error = 'Critical error: missing model.';
-					framework.console.warn( heap.connectMVC_error );
-				} else if ( typeof heap.view === 'undefined' ) {
-					heap.connectMVC_error = 'Critical error: missing view.';
-					framework.console.warn( heap.connectMVC_error );
 				} else {
 					queue.pc.goto( queue.pc.locate( 'initializeApplication' ) );
 					framework.cover.statusBar.$text.text( 'finalizing setup' );
-					app.control.connectModel( app.model );
-					app.control.connectView( app.view );
+					if (typeof app.model != 'undefined')
+						app.control.connectModel( app.model );
+					if ( typeof heap.view != 'undefined' )
+						app.control.connectView( app.view );
 				}
 			},
 			function connectMVC_displayError( queue, heap ) {
