@@ -1,7 +1,7 @@
 HTML, BODY {background-color: #333333;}
 
 /* hidden container */
-.xhll_fw_hidCTNR {
+.xhll_hidCTNR {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -13,7 +13,7 @@ HTML, BODY {background-color: #333333;}
     pointer-events: none !important;
 }
 
-.xhll_fw_fixFullWindow {
+.xhll_fixFullWindow {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
@@ -22,13 +22,13 @@ HTML, BODY {background-color: #333333;}
 }
 
 /* log container */
-.xhll_fw_logCTNR {
+.xhll_logCTNR {
     z-index: 1000 !important;
     overflow: auto !important;
     white-space: pre !important;
     pointer-events: none !important;
 }
-.xhll_fw_logCTNR p {
+.xhll_logCTNR p {
     margin: 0 !important;
     padding: 0 0 0 1em !important;
     font-size: 14px !important;
@@ -37,7 +37,7 @@ HTML, BODY {background-color: #333333;}
     pointer-events: none !important;
 }
 
-.xhll_fw_logCTNR p.log {
+.xhll_logCTNR p.log {
     color: #666 !important;
     font-weight: normal !important;
     text-shadow:
@@ -51,7 +51,7 @@ HTML, BODY {background-color: #333333;}
         1px 1px 0px #fff;
 }
 
-.xhll_fw_logCTNR p.warn {
+.xhll_logCTNR p.warn {
     color: #F33 !important;
     font-weight: bold !important;
     text-shadow:
@@ -66,28 +66,28 @@ HTML, BODY {background-color: #333333;}
 }
 
 /* background container */
-.xhll_fw_bkgCTNR {
+.xhll_bkgCTNR {
     z-index: 1 !important;
     background-color: #737373;
 }
 
 /* body container */
-.xhll_fw_bdyCTNR {
+.xhll_bdyCTNR {
     z-index: 2 !important;
     background-color: transparent !important;
 }
 /* force hide everything in body at first */
-.xhll_fw_bdyCTNR > * {
+.xhll_bdyCTNR > * {
     display: none;
 }
 
 /* cover container */
-.xhll_fw_cvrCTNR {
+.xhll_cvrCTNR {
     z-index: 3 !important;
     background-color: #ededed !important;
 }
 
-.xhll_fw_cvr_logo {
+.xhll_cvr_logo {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -97,12 +97,12 @@ HTML, BODY {background-color: #333333;}
     overflow: hidden;
 }
 
-.xhll_fw_cvr_logo_img {
+.xhll_cvr_logo_img {
     width: 360px;
     height: 124px;
 }
 
-.xhll_fw_cvr_statusbar {
+.xhll_cvr_statusbar {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -116,7 +116,7 @@ HTML, BODY {background-color: #333333;}
     line-height: 18px;
 }
 
-.xhll_fw_cvr_statusbar_label {
+.xhll_cvr_statusbar_label {
     position: relative;
     height: 18px;
     font-family: Verdana;
