@@ -34,7 +34,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.4',
+			version : '0.2.2.5',
 			// console
 			console: {
 				$container : $DIV()
@@ -246,7 +246,6 @@ var s = document.getElementsByTagName('script')[0];
 				queue.pc.goto( queue.pc.locate( 'framework_adjustSiteLogo' ) );
 				framework.cover.logo.$label.text('hello world');
 				framework.cover.logo.$label.show();
-				queue.pause();
 			},
 			PQUEUE_BARRIER,
 			function framework_adjustSiteLogo( queue, heap ) {
@@ -264,6 +263,7 @@ var s = document.getElementsByTagName('script')[0];
 						.animate( logo_css, 300, queue.resume );
 				}
 			},
+			PQUEUE_HALT,
 			function framework_showStatusBar( queue, heap ) {
 				framework.cover.statusBar.$text.text( 'starting' ).show();
 				framework.cover.statusBar.$dots[ 0 ].show();
