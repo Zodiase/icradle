@@ -244,7 +244,9 @@ var s = document.getElementsByTagName('script')[0];
 			PQUEUE_BARRIER,
 			function framework_showSiteTextLogo( queue, heap ) {
 				queue.pc.goto( queue.pc.locate( 'framework_adjustSiteLogo' ) );
+				framework.cover.logo.$label.text('hello world');
 				framework.cover.logo.$label.show();
+
 			},
 			PQUEUE_BARRIER,
 			function framework_adjustSiteLogo( queue, heap ) {
