@@ -34,6 +34,7 @@ HTML, BODY {background-color: #333333;}
     font-size: 14px !important;
     line-height: 150% !important;
     font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    font-family: "Lucida Console", Monaco, monospace !important;
     pointer-events: none !important;
 }
 
@@ -90,16 +91,27 @@ HTML, BODY {background-color: #333333;}
 .xhll_cvr_logo {
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 0;
+    left: 0;
     margin: -30px auto auto -180px;
-    width: 360px;
     height: 60px;
     overflow: hidden;
 }
 
 .xhll_cvr_logo_img {
-    width: 360px;
-    height: 124px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+.xhll_cvr_logo_label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 60px;
+    font-weight: bold;
 }
 
 .xhll_cvr_statusbar {
@@ -107,8 +119,8 @@ HTML, BODY {background-color: #333333;}
     top: 50%;
     left: 50%;
     margin: 100px auto auto -150px;
-    width: 300px;
     height: 18px;
+    width: 300px;
     overflow: hidden;
     text-align: center;
     font-family: Verdana;
