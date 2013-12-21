@@ -93,7 +93,7 @@ HTML, BODY {background-color: #333333;}
     top: 50%;
     right: 0;
     left: 0;
-    margin: -30px auto auto -180px;
+    margin: -30px 0 0 0;
     height: 60px;
     overflow: hidden;
 }
