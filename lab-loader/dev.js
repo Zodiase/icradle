@@ -246,7 +246,7 @@ var s = document.getElementsByTagName('script')[0];
 				queue.pc.goto( queue.pc.locate( 'framework_adjustSiteLogo' ) );
 				framework.cover.logo.$label.text('hello world');
 				framework.cover.logo.$label.show();
-
+				queue.pause();
 			},
 			PQUEUE_BARRIER,
 			function framework_adjustSiteLogo( queue, heap ) {
