@@ -1,0 +1,124 @@
+HTML, BODY {background-color: #333333;}
+
+/* hidden container */
+.xhll_fw_hidCTNR {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.xhll_fw_fixFullWindow {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left:0 !important;
+}
+
+/* log container */
+.xhll_fw_logCTNR {
+    z-index: 1000 !important;
+    overflow: auto !important;
+    white-space: pre !important;
+    pointer-events: none !important;
+}
+.xhll_fw_logCTNR p {
+    margin: 0 !important;
+    padding: 0 0 0 1em !important;
+    font-size: 14px !important;
+    line-height: 150% !important;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    pointer-events: none !important;
+}
+
+.xhll_fw_logCTNR p.log {
+    color: #666 !important;
+    font-weight: normal !important;
+    text-shadow:
+        0px -1px 0px #fff,
+        1px 0px 0px #fff,
+        0px 1px 0px #fff,
+        -1px 0px 0px #fff,
+        -1px -1px 0px #fff,
+        -1px 1px 0px #fff,
+        1px -1px 0px #fff,
+        1px 1px 0px #fff;
+}
+
+.xhll_fw_logCTNR p.warn {
+    color: #F33 !important;
+    font-weight: bold !important;
+    text-shadow:
+        0px -1px 0px #000,
+        1px 0px 0px #000,
+        0px 1px 0px #000,
+        -1px 0px 0px #000,
+        -1px -1px 0px #000,
+        -1px 1px 0px #000,
+        1px -1px 0px #000,
+        1px 1px 0px #000;
+}
+
+/* background container */
+.xhll_fw_bkgCTNR {
+    z-index: 1 !important;
+    background-color: #737373;
+}
+
+/* body container */
+.xhll_fw_bdyCTNR {
+    z-index: 2 !important;
+    background-color: transparent !important;
+}
+/* force hide everything in body at first */
+.xhll_fw_bdyCTNR > * {
+    display: none;
+}
+
+/* cover container */
+.xhll_fw_cvrCTNR {
+    z-index: 3 !important;
+    background-color: #ededed !important;
+}
+
+.xhll_fw_cvr_logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px auto auto -180px;
+    width: 360px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.xhll_fw_cvr_logo_img {
+    width: 360px;
+    height: 124px;
+}
+
+.xhll_fw_cvr_statusbar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 100px auto auto -150px;
+    width: 300px;
+    height: 18px;
+    overflow: hidden;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.xhll_fw_cvr_statusbar_label {
+    position: relative;
+    height: 18px;
+    font-family: Verdana;
+    font-size: 12px;
+}

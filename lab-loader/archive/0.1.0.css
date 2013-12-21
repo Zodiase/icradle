@@ -1,0 +1,71 @@
+HTML, BODY {background-color: #333333;}
+.fw_hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.fw_fixFullWindow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+}
+
+.fw_background {
+    z-index: 1;
+    background-color: #737373;
+}
+
+.fw_body {
+    z-index: 2;
+    background-color: transparent;
+}
+
+.fw_cover {
+    z-index: 3;
+    background-color: #ededed;
+}
+
+.fw_cover_logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px auto auto -180px;
+    width: 360px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.fw_cover_logo_img {
+    width: 360px;
+    height: 124px;
+}
+
+.fw_cover_statusbar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 100px auto auto -150px;
+    width: 300px;
+    height: 18px;
+    overflow: hidden;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.fw_cover_statusbar_label {
+    position: relative;
+    height: 18px;
+    font-family: Verdana;
+    font-size: 12px;
+}
