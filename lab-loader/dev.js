@@ -34,7 +34,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.12',
+			version : '0.2.2.13',
 			// console
 			console: {
 				$container : $DIV()
@@ -321,7 +321,7 @@ var s = document.getElementsByTagName('script')[0];
 					framework.cover.statusBar.$text.text( 'finalizing setup' );
 					if (typeof app.model != 'undefined')
 						app.control.connectModel( app.model );
-					if ( typeof heap.view != 'undefined' )
+					if ( typeof app.view != 'undefined' )
 						app.control.connectView( app.view );
 				}
 			},
