@@ -34,7 +34,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.9',
+			version : '0.2.2.10',
 			// console
 			console: {
 				$container : $DIV()
@@ -263,7 +263,6 @@ var s = document.getElementsByTagName('script')[0];
 						.animate( logo_css, 300, queue.resume );
 				}
 			},
-			PQUEUE_HALT,
 			function framework_showStatusBar( queue, heap ) {
 				framework.cover.statusBar.$text.text( 'starting' ).show();
 				framework.cover.statusBar.$dots[ 0 ].show();
