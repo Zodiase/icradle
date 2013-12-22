@@ -26,15 +26,30 @@ var s = document.getElementsByTagName('script')[0];
 				return $( '<' + escape( tagName ) + '>' );
 			};
 		};
-		var $DIV   = $ELE( 'DIV' ),
+		var $A     = $ELE( 'A' ),
+			$DIV   = $ELE( 'DIV' ),
 			$IMG   = $ELE( 'IMG' ),
+			$INPUT = $ELE( 'INPUT' ),
 			$LABEL = $ELE( 'LABEL' ),
-			$P     = $ELE( 'P' );
+			$NAV   = $ELE( 'NAV' ),
+			$P     = $ELE( 'P' ),
+			$SPAN  = $ELE( 'SPAN' );
 		// helper functions --//
 
 		// framework
 		var framework = {
-			version : '0.2.2.13',
+			version : '0.2.2.14',
+			// template module
+			template: {
+				$A     : $A,
+				$DIV   : $DIV,
+				$IMG   : $IMG,
+				$INPUT : $INPUT,
+				$LABEL : $LABEL,
+				$NAV   : $NAV,
+				$P     : $P,
+				$SPAN  : $SPAN;
+			}, // template
 			// console
 			console: {
 				$container : $DIV()
@@ -59,29 +74,29 @@ var s = document.getElementsByTagName('script')[0];
 				clear : function() {
 					framework.console.$container.empty();
 				}
-			},
+			}, // console
 			// off-document container
 			unreal : {
 				$container : $DIV()
 					.addClass( _u( 'ofdCTNR', 'fixFullWindow' ) )
-			},
+			}, // unreal
 			// hidden container
 			hidden : {
 				$container : $DIV()
 					.addClass( _u( 'hidCTNR' ) )
-			},
+			}, // hidden
 			// background container
 			background : {
 				$container : $DIV()
 					.addClass( _u( 'bkgCTNR', 'fixFullWindow' ) )
 					.hide()
-			},
+			}, // background
 			// body container
 			body : {
 				$container : $DIV()
 					.addClass( _u( 'bdyCTNR', 'fixFullWindow' ) )
 					.hide()
-			},
+			}, // body
 			// cover container
 			cover : {
 				$container : $DIV()
