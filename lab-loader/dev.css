@@ -113,6 +113,7 @@ HTML, BODY {background-color: #333333;}
     font-size: 60px;
     font-weight: bold;
     color: #818181;
+    text-shadow: rgb(33, 33, 33) 1px 1px 0px;
 }
 
 .xhll_cvr_statusbar {
