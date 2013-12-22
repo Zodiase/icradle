@@ -1,5 +1,4 @@
 function theControl( framework ) {
-
 	var __model = null,
 		__view = null;
 	var events = Array();
