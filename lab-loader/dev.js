@@ -22,8 +22,11 @@ var s = document.getElementsByTagName('script')[0];
 		var _u = UNIQIT_GEN( 'xhll_' ); // xhll = xh lab loader
 		// this function generates functions for creating DOM objects
 		var $ELE = function( tagName ) {
-			return function() {
-				return $( '<' + escape( tagName ) + '>' );
+			return function( idName ) {
+				var result = $( '<' + escape( tagName ) + '>' );
+				if ( idName !== undefined )
+					result.attr('id', idName);
+				return result;
 			};
 		};
 		var $A     = $ELE( 'A' ),
@@ -38,7 +41,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.14',
+			version : '0.2.2.15',
 			// template module
 			template: {
 				$A     : $A,
@@ -334,9 +337,9 @@ var s = document.getElementsByTagName('script')[0];
 				} else {
 					queue.pc.goto( queue.pc.locate( 'initializeApplication' ) );
 					framework.cover.statusBar.$text.text( 'finalizing setup' );
-					if (typeof app.model != 'undefined')
+					if ( app.model !== undefined )
 						app.control.connectModel( app.model );
-					if ( typeof app.view != 'undefined' )
+					if ( app.view !== undefined )
 						app.control.connectView( app.view );
 				}
 			},
