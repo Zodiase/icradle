@@ -34,7 +34,7 @@ var s = document.getElementsByTagName('script')[0];
 
 		// framework
 		var framework = {
-			version : '0.2.2.11',
+			version : '0.2.2.12',
 			// console
 			console: {
 				$container : $DIV()
