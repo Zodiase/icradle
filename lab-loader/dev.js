@@ -48,7 +48,7 @@ var s = document.getElementsByTagName('script')[0];
 				$LABEL : $LABEL,
 				$NAV   : $NAV,
 				$P     : $P,
-				$SPAN  : $SPAN;
+				$SPAN  : $SPAN
 			}, // template
 			// console
 			console: {
