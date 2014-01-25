@@ -1,18 +1,9 @@
-function iNotiC($parent, initialStyle, insertAnimation, removeAnimation) {
+function iNotiC($parent, insertAnimation, removeAnimation) {
 	/**
 	 * define frame element
 	 * this element contains all the notification elements
 	 */
 	var $noteFrame = $('<ul class="iNotiC_stack">').appendTo($parent);
-	/**
-	 * check initial style object
-	 */
-	if (typeof initialStyle !== 'object') {
-		initialStyle = {
-			width: '150px',
-			marginLeft: '100%'
-		};
-	}
 	/**
 	 * check animation functions
 	 * if not (correctly) defined, use default functions
@@ -37,8 +28,7 @@ function iNotiC($parent, initialStyle, insertAnimation, removeAnimation) {
 	
 	var appendNote = function (msg, auxClass, duration) {
 		var theNewNote = {
-			$element: $('<li class="iNotiC_msg">').css(initialStyle)
-			                                      .text(msg),
+			$element: $('<li class="iNotiC_msg">').text(msg),
 			active: true,
 			close: function () {
 				if (theNewNote.active) {
