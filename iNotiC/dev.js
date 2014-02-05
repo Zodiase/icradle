@@ -1,63 +1,118 @@
-function iNotiC($parent, insertAnimation, removeAnimation) {
+/**
+ * DESCR:
+ *     The iNotiC function is a factory function that creates a note manager when called.
+ *     The manager itself is a logic hidden private, with only the public methods being returned.
+ * PARAM:
+ *     $parent: a jQuery object of the element will be containing the note stack element
+ *     insertAnimation: a function used to animate note elements for insertion
+ *     removeAnimation: a function used to animate note elements for removal
+ */
+function iNotiC( $parent, insertAnimation, removeAnimation ) {
 	/**
 	 * define frame element
 	 * this element contains all the notification elements
 	 */
-	var $noteFrame = $('<ul class="iNotiC_stack">').appendTo($parent);
+	var $noteList = $( '<ul class="iNotiC_stack">' ).appendTo( $parent );
 	/**
 	 * check animation functions
 	 * if not (correctly) defined, use default functions
 	 */
-	if (typeof insertAnimation !== 'function') {
-		insertAnimation = function ($noteElement, callback) {
-			$noteElement.animate({
+	if ( typeof insertAnimation !== 'function' ) {
+		// using default function
+		insertAnimation = function ( $noteElement, callback ) {
+			$noteElement.animate( {
+				// shift in from right
 				marginLeft: '0%'
-			}, 300, callback);
+			}, 300, callback );
 		};
 	}
-	if (typeof removeAnimation !== 'function') {
-		removeAnimation = function ($noteElement, callback) {
-			$noteElement.animate({
+	if ( typeof removeAnimation !== 'function' ) {
+		// using default function
+		removeAnimation = function ( $noteElement, callback ) {
+			$noteElement.animate( {
+				// shift out towards right
 				marginLeft: '100%'
-			}, 300).animate({
+			}, 300 ).animate( {
+				// collapse
 				padding: '0',
 				height: '0'
-			}, 100, callback);
+			}, 100, callback );
 		};
 	}
 	
-	var appendNote = function (msg, auxClass, duration) {
+	/**
+	 * this function is used to create a new notification and return its public methods.
+	 */
+	var appendNote = function ( msg, auxClass, duration ) {
 		var theNewNote = {
-			$element: $('<li class="iNotiC_msg">').text(msg),
+			$noteFrame: $( '<li class="iNotiC_msg">' ).text( msg ),
+			$noteContent: $( '<p>' ),
+			// a flag indicating if this note is NOT closing
 			active: true,
+			// method to close this note
 			close: function () {
-				if (theNewNote.active) {
+				// if the note is NOT closing
+				if ( theNewNote.active ) {
+					// set the flag to indicate this note IS closing
 					theNewNote.active = false;
-					if (typeof theNewNote.timer != 'undefined') {
-						window.clearTimeout(theNewNote.timer);
-					}
-					removeAnimation(theNewNote.$element, function () {
-						theNewNote.$element.remove();
-					});
+					
+					// if a timer is defined previously, clear it
+					if ( typeof theNewNote.timer != 'undefined' )
+						window.clearTimeout( theNewNote.timer );
+					
+					// call the remove animation function
+					removeAnimation.call( theNewNote.$noteFrame, theNewNote.$noteFrame, function () {
+						theNewNote.$noteFrame.remove();
+					} );
 				}
+			},
+			text: function ( string ) {
+				return theNewNote.$noteContent.text( string );
 			}
 		};
-		theNewNote.$element.addClass(auxClass)
-		                   .click(theNewNote.close)
-		                   .appendTo($noteFrame);
-		insertAnimation(theNewNote.$element, function () {
-			if (typeof duration === 'number' && duration > 0) {
-				theNewNote.timer = window.setTimeout(theNewNote.close, duration);
+		
+		theNewNote.$noteFrame.append( theNewNote.$noteContent ) // append the content element
+		                     .addClass( auxClass )              // add class
+		                     .click( theNewNote.close )         // define click behavior
+		                     .appendTo( $noteList );            // append to context
+
+		// call the insert animation function
+		insertAnimation.call( theNewNote.$noteFrame, theNewNote.$noteFrame, function () {
+			if ( typeof duration === 'number' && duration > 0 ) {
+				// set timer to auto close the note
+				theNewNote.timer = window.setTimeout( theNewNote.close, duration );
 			}
-		});
-		return theNewNote;
+		} );
+		
+		// return public methods of the note
+		return {
+			close: theNewNote.close,
+			text: theNewNote.text
+		};
 	};
+	
+	// return public methods of the note manager
 	return {
-		log: function (msg, duration) {
-			appendNote(msg, false, duration);
-		},
-		warn: function (msg) {
-			appendNote(msg, 'iNotiC_warn', -1);
-		}
+		log:
+			/**
+			 * this function is only a publicly accessible macro
+			 * calling the appendNote with 'no auxiliary class'
+			 */
+			function ( msg, duration ) {
+				// return the Note object so the caller can access it
+				return appendNote( msg, false, duration );
+			}
+		,
+		warn:
+			/**
+			 * this function is only a publicly accessible macro
+			 * calling the appendNote with the specific auxiliary class 'iNotiC_warn'
+			 * (user can use this className to specify style for warning notes)
+			 * and duration -1 (means the note won't auto close)
+			 */
+			function ( msg ) {
+				// return the Note object so the caller can access it
+				return appendNote( msg, 'iNotiC_warn', -1 );
+			}
 	};
 }
