@@ -45,8 +45,8 @@ function iNotiC( $parent, insertAnimation, removeAnimation ) {
 	 */
 	var appendNote = function ( msg, auxClass, duration ) {
 		var theNewNote = {
-			$noteFrame: $( '<li class="iNotiC_msg">' ).text( msg ),
-			$noteContent: $( '<p>' ),
+			$noteFrame: $( '<li class="iNotiC_msg">' ),
+			$noteContent: $( '<p>' ).text( msg ),
 			// a flag indicating if this note is NOT closing
 			active: true,
 			// method to close this note
