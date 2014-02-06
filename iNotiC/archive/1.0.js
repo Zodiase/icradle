@@ -1,5 +1,5 @@
 /**
- * iNotiC ver 0.1.0 archived
+ * iNotiC ver 1.0 archived
  *
  * DESCR:
  *     The iNotiC function is a factory function that creates a note manager when called.
