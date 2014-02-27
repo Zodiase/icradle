@@ -12,7 +12,7 @@ function iNotiC( $parent, insertAnimation, removeAnimation ) {
 	 * define frame element
 	 * this element contains all the notification elements
 	 */
-	var $noteList = $( '<ul class="iNotiC_stack">' ).appendTo( $parent );
+	var $noteList = jQuery( '<ul class="iNotiC_stack">' ).appendTo( $parent );
 	/**
 	 * check animation functions
 	 * if not (correctly) defined, use default functions
@@ -45,8 +45,8 @@ function iNotiC( $parent, insertAnimation, removeAnimation ) {
 	 */
 	var appendNote = function ( msg, auxClass, duration ) {
 		var theNewNote = {
-			$noteFrame: $( '<li class="iNotiC_msg">' ),
-			$noteContent: $( '<p>' ).text( msg ),
+			$noteFrame: jQuery( '<li class="iNotiC_msg">' ),
+			$noteContent: jQuery( '<p>' ).text( msg ),
 			// a flag indicating if this note is NOT closing
 			active: true,
 			// method to close this note
