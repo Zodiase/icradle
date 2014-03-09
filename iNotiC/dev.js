@@ -101,6 +101,7 @@ function iNotiC( $parent, insertAnimation, removeAnimation ) {
 			/**
 			 * this function is only a macro for creating a note
 			 * reporting the version
+			 * [since 1.1]
 			 */
 			function ( duration ) {
 				return appendNote( 'iNotiC ver. ' + version, false, duration );
@@ -110,6 +111,7 @@ function iNotiC( $parent, insertAnimation, removeAnimation ) {
 			/**
 			 * this function is only a publicly accessible macro
 			 * calling the appendNote with 'no auxiliary class'
+			 * [since 1.0]
 			 */
 			function ( msg, duration ) {
 				// return the Note object so the caller can access it
@@ -122,6 +124,7 @@ function iNotiC( $parent, insertAnimation, removeAnimation ) {
 			 * calling the appendNote with the specific auxiliary class 'iNotiC_warn'
 			 * (user can use this className to specify style for warning notes)
 			 * and duration -1 (means the note won't auto close)
+			 * [since 1.0]
 			 */
 			function ( msg ) {
 				// return the Note object so the caller can access it
